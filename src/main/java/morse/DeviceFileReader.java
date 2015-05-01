@@ -32,7 +32,6 @@ public class DeviceFileReader implements Runnable {
     public DeviceFileReader(InputStream in) {
         this.in = in;
         this.handler = new SignalDecoder();
-        this.handler.start();
 
     }
 

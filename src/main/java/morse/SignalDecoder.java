@@ -19,7 +19,6 @@ import java.util.logging.Logger;
 import static morse.SignalDecoder.States.*;
 
 /**
- *
  * @author Russell
  */
 public class SignalDecoder implements Runnable {
@@ -89,9 +88,9 @@ public class SignalDecoder implements Runnable {
                 }
                 break;
             case CONSUME_REST:
-                LOG.log(Level.INFO, "consumed");
+                LOG.log(Level.FINE, "consumed");
                 if (delta > DOT_TIMEOUT) {
-                    LOG.log(Level.INFO, "finished consuming");
+                    LOG.log(Level.FINE, "finished consuming");
                     this.state = NONE_READ;
                 }
                 break;
@@ -119,6 +118,13 @@ public class SignalDecoder implements Runnable {
         resetTimer();
         queue.add("-");
         state = States.CONSUME_REST;
+    }
+
+    /**
+     * @return bq
+     */
+    public BlockingQueue<String> getQueue() {
+        return queue;
     }
 
     @Override
